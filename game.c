@@ -2,15 +2,16 @@
 
 #include "game.h"
   
-void init_tic(char arr[ROW][COL],int row,int col) //³õÊ¼»¯Êı×éÄÚÈİÎª¿Õ¸ñ
+void init_tic(char arr[ROW][COL],int row,int col) //åˆå§‹åŒ–æ•°ç»„å†…å®¹ä¸ºç©ºæ ¼
 {
 	memset(arr, ' ', row*col*sizeof(char));
 }
 
-void stamp_tic(char arr[ROW][COL], int row, int col) //´òÓ¡Êı×é
+void stamp_tic(char arr[ROW][COL], int row, int col) //æ‰“å°æ•°ç»„
 {
 	int i = 0;
 	printf("-------------\n");
+	
 	for (i = 0; i < row; i++) 
 	{
 		printf("| %c | %c | %c |\n", arr[i][0], arr[i][1], arr[i][2]);
@@ -22,17 +23,18 @@ void stamp_tic(char arr[ROW][COL], int row, int col) //´òÓ¡Êı×é
 	printf("-------------\n\n");
 }
 
-void player_move(char arr[ROW][COL], int row, int col) //Íæ¼ÒÒÆ¶¯
+void player_move(char arr[ROW][COL], int row, int col) //ç©å®¶ç§»åŠ¨
 {
 	int x = 0;
 	int y = 0;
 	while (1)
 	{
-		printf("Íæ¼Ò×ß£¡\n");
-		printf("ÇëÊäÈë×ø±ê£º<");
-		scanf("%d%d", &x, &y); //Íæ¼ÒÑ¡Ôñ×ø±ê
+		printf("ç©å®¶èµ°ï¼\n");
+		printf("è¯·è¾“å…¥åæ ‡ï¼š<");
+		scanf("%d%d", &x, &y); //ç©å®¶é€‰æ‹©åæ ‡
 		printf("\n");
-		if ((x > 0 && x <= 3) && (y > 0 && y <= 3)) //ÅĞ¶ÏÊäÈë×ø±êÊÇ·ñÕıÈ·£¬ÈôÕıÈ·ÔòÒÆ¶¯
+		
+		if ((x > 0 && x <= 3) && (y > 0 && y <= 3)) //åˆ¤æ–­è¾“å…¥åæ ‡æ˜¯å¦æ­£ç¡®ï¼Œè‹¥æ­£ç¡®åˆ™ç§»åŠ¨
 		{
 			x--;
 			y--;
@@ -43,12 +45,12 @@ void player_move(char arr[ROW][COL], int row, int col) //Íæ¼ÒÒÆ¶¯
 			}
 			else
 			{
-				printf("ÏÂ±íÓĞÎó£¬ÇëÖØĞÂÊäÈë£º<");
+				printf("ä¸‹è¡¨æœ‰è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼š<");
 			}
 		}
 		else
 		{
-			printf("ÏÂ±íÓĞÎó£¬ÇëÖØĞÂÊäÈë£º<");
+			printf("ä¸‹è¡¨æœ‰è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼š<");
 		}
 	}
 }
@@ -117,30 +119,35 @@ char judge_tic(char arr[ROW][COL], int row, int col, int k)
 			k = 1;
 			break;
 		}
+		
 		if ((arr[0][0] == arr[2][2]) && (arr[2][2] == 'X') && (arr[1][1] == ' '))
 		{
 			arr[1][1] = '0';
 			k = 1;
 			break;
 		}
+		
 		if ((arr[1][1] == arr[2][2]) && (arr[1][1] == 'X') && (arr[0][0] == ' '))
 		{
 			arr[0][0] = '0';
 			k = 1;
 			break;
 		}
+		
 		if ((arr[0][2] == arr[1][1]) && (arr[0][2] == 'X') && (arr[2][0] == ' '))
 		{
 			arr[2][0] = '0';
 			k = 1;
 			break;
 		}
+		
 		if ((arr[0][2] == arr[2][0]) && (arr[2][0] == 'X') && (arr[1][1] == ' '))
 		{
 			arr[1][1] = '0';
 			k = 1;
 			break;
 		}
+		
 		if ((arr[1][1] == arr[2][0]) && (arr[2][0] == 'X') && (arr[0][2] == ' '))
 		{
 			arr[0][2] = '0';
@@ -152,7 +159,7 @@ char judge_tic(char arr[ROW][COL], int row, int col, int k)
 	return k;
 }
 
-char check_tic(char arr[ROW][COL], int row, int col) //µçÄÔÅĞ¶ÏÊÇ·ñ¿ÉÒÔÊ¤³ö
+char check_tic(char arr[ROW][COL], int row, int col) //ç”µè„‘åˆ¤æ–­æ˜¯å¦å¯ä»¥èƒœå‡º
 {
 	int i = 0;
 	int j = 0;
@@ -217,12 +224,14 @@ char check_tic(char arr[ROW][COL], int row, int col) //µçÄÔÅĞ¶ÏÊÇ·ñ¿ÉÒÔÊ¤³ö
 			k = 1;
 			break;
 		}
+		
 		if ((arr[0][0] == arr[2][2]) && (arr[2][2] == '0') && (arr[1][1] == ' '))
 		{
 			arr[1][1] = '0';
 			k = 1;
 			break;
 		}
+		
 		if ((arr[1][1] == arr[2][2]) && (arr[1][1] == '0') && (arr[0][0] == ' '))
 		{
 			arr[0][0] = '0';
@@ -235,12 +244,14 @@ char check_tic(char arr[ROW][COL], int row, int col) //µçÄÔÅĞ¶ÏÊÇ·ñ¿ÉÒÔÊ¤³ö
 			k = 1;
 			break;
 		}
+		
 		if ((arr[0][2] == arr[2][0]) && (arr[2][0] == '0') && (arr[1][1] == ' '))
 		{
 			arr[1][1] = '0';
 			k = 1;
 			break;
 		}
+		
 		if ((arr[1][1] == arr[2][0]) && (arr[2][0] == '0') && (arr[0][2] == ' '))
 		{
 			arr[0][2] = '0';
@@ -254,13 +265,14 @@ char check_tic(char arr[ROW][COL], int row, int col) //µçÄÔÅĞ¶ÏÊÇ·ñ¿ÉÒÔÊ¤³ö
 }
 
 
-void computer_move(char arr[ROW][COL], int row, int col) //µçÄÔ²úÉúËæ»ú×ø±ê£¬ÒÆ¶¯
+void computer_move(char arr[ROW][COL], int row, int col) //ç”µè„‘äº§ç”Ÿéšæœºåæ ‡ï¼Œç§»åŠ¨
 {
 	int x = 0;
 	int y = 0;
 	int z = 0;
-	printf("µçÄÔ×ß!\n\n");
+	printf("ç”µè„‘èµ°!\n\n");
 	z = check_tic(arr, row, col);
+	
 	while (0 == z)
 	{
 		x = rand() % 3;
@@ -274,21 +286,13 @@ void computer_move(char arr[ROW][COL], int row, int col) //µçÄÔ²úÉúËæ»ú×ø±ê£¬ÒÆ¶
 	}
 }
 
-	//while (1)
-	//{
-	//	x = rand() % 3;   //µçÄÔ²úÉúËæ»ú×ø±ê
-	//	y = rand() % 3;
-	//	if (arr[x][y] == ' ')
-	//	{
-	//		arr[x][y] = '0';
-	//		break;
-	//	}
-	//}
 
-char is_full(char arr[ROW][COL], int row, int col) //ÅĞ¶ÏÆåÅÌÊÇ·ñÒÑ¾­ÏÂÂú
+
+char is_full(char arr[ROW][COL], int row, int col) //åˆ¤æ–­æ£‹ç›˜æ˜¯å¦å·²ç»ä¸‹æ»¡
 {
 	int i = 0;
 	int j = 0;
+	
 	for (i = 0; i < row; i++)
 	{
 		for (j = 0; j < col; j++)
@@ -300,12 +304,12 @@ char is_full(char arr[ROW][COL], int row, int col) //ÅĞ¶ÏÆåÅÌÊÇ·ñÒÑ¾­ÏÂÂú
 	return 1;
 }
 
-char judge_win(char arr[ROW][COL], int row, int col) //ÅĞ¶ÏÊÇ·ñÓĞÊ¤³ö
+char judge_win(char arr[ROW][COL], int row, int col) //åˆ¤æ–­æ˜¯å¦æœ‰èƒœå‡º
 {
 	int i = 0;
 	int j = 0;
 
-	for (i = 0; i < row; i++)  //ÅĞ¶ÏĞĞÊÇ·ñÓĞÈı¸öÒ»ÖÂ
+	for (i = 0; i < row; i++)  //åˆ¤æ–­è¡Œæ˜¯å¦æœ‰ä¸‰ä¸ªä¸€è‡´
 	{
 		if ((arr[i][0] == arr[i][1]) 
 			&& (arr[i][1] == arr[i][2]) 
@@ -315,7 +319,7 @@ char judge_win(char arr[ROW][COL], int row, int col) //ÅĞ¶ÏÊÇ·ñÓĞÊ¤³ö
 		}
 	}
 
-	for (j = 0; j < col; j++)  //ÅĞ¶ÏÁĞÊÇ·ñÓĞÈı¸öÒ»ÖÂ
+	for (j = 0; j < col; j++)  //åˆ¤æ–­åˆ—æ˜¯å¦æœ‰ä¸‰ä¸ªä¸€è‡´
 	{
 		if ((arr[0][j] == arr[1][j]) 
 			&& (arr[1][j] == arr[2][j]) 
@@ -325,19 +329,19 @@ char judge_win(char arr[ROW][COL], int row, int col) //ÅĞ¶ÏÊÇ·ñÓĞÊ¤³ö
 		}
 	}
 
-	if ((arr[0][0] == arr[1][1])  //ÅĞ¶ÏÕı¶Ô½ÇÏßÊÇ·ñÈı¸öÒ»ÖÂ 
+	if ((arr[0][0] == arr[1][1])  //åˆ¤æ–­æ­£å¯¹è§’çº¿æ˜¯å¦ä¸‰ä¸ªä¸€è‡´ 
 		&& (arr[1][1] == arr[2][2]) 
 		&& (arr[1][1] != ' '))
 		return arr[1][1];
 
-	if ((arr[0][2] == arr[1][1]) //ÅĞ¶ÏĞ±¶Ô½ÇÏßÊÇ·ñÈı¸öÒ»ÖÂ
+	if ((arr[0][2] == arr[1][1]) //åˆ¤æ–­æ–œå¯¹è§’çº¿æ˜¯å¦ä¸‰ä¸ªä¸€è‡´
 		&& (arr[1][1] == arr[2][0]) 
 		&& (arr[1][1] != ' '))
 		return arr[1][1];
 
-	if (is_full(arr, row, col))  //ÅĞ¶ÏÆåÅÌÉÏÊÇ·ñ»¹ÓĞ¿Õ¸ñ
+	if (is_full(arr, row, col))  //åˆ¤æ–­æ£‹ç›˜ä¸Šæ˜¯å¦è¿˜æœ‰ç©ºæ ¼
 	{
-		return 'Q'; //·µ»ØQ£¬±íÊ¾Æ½¾Ö
+		return 'Q'; //è¿”å›Qï¼Œè¡¨ç¤ºå¹³å±€
 	}
-	return ' ';  //·µ»Ø¿Õ¸ñ£¬±íÊ¾ÓÎÏ·¼ÌĞø
+	return ' ';  //è¿”å›ç©ºæ ¼ï¼Œè¡¨ç¤ºæ¸¸æˆç»§ç»­
 }
